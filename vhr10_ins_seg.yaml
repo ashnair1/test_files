@@ -1,0 +1,21 @@
+trainer:
+  min_epochs: 15
+  max_epochs: 100
+  #callbacks: lightning.pytorch.callbacks.LearningRateFinder
+
+model:
+  class_path: InstanceSegmentationTask
+  init_args:
+    model: 'mask-rcnn'
+    backbone: 'resnet50'
+    num_classes: 11
+    lr: 3.0e-5 #0.7
+    patience: 10
+data:
+  class_path: VHR10DataModule
+  init_args:
+    batch_size: 2 #1
+    num_workers: 31 #0
+    patch_size: 512
+  dict_kwargs:
+    root: '/home/ash1/Projects/torchgeo/data/vhr10'
